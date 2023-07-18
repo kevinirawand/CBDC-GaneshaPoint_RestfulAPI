@@ -2,45 +2,39 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
    async up(queryInterface, Sequelize) {
-      await queryInterface.createTable('tbl_scrapings', {
+      await queryInterface.createTable('Users', {
          id: {
             allowNull: false,
             autoIncrement: true,
             primaryKey: true,
             type: Sequelize.INTEGER
          },
-         tiktok_username: {
+         nama: {
             type: Sequelize.STRING
          },
-         url: {
+         no_hp: {
             type: Sequelize.STRING
          },
-         follower_count: {
+         email: {
             type: Sequelize.STRING
          },
-         like_count: {
-            type: Sequelize.INTEGER
+         password: {
+            type: Sequelize.STRING
          },
-         comment_count: {
-            type: Sequelize.INTEGER
+         role: {
+            type: Sequelize.ENUM('Central_Bank', 'Intermediaries', 'User', 'Merchant')
          },
-         response_count: {
-            type: Sequelize.INTEGER
-         },
-         taken_at: {
-            type: Sequelize.DATE
-         },
-         created_at: {
+         createdAt: {
             allowNull: false,
             type: Sequelize.DATE
          },
-         updated_at: {
+         updatedAt: {
             allowNull: false,
             type: Sequelize.DATE
          }
       });
    },
    async down(queryInterface, Sequelize) {
-      await queryInterface.dropTable('tbl_scrapings');
+      await queryInterface.dropTable('Users');
    }
 };

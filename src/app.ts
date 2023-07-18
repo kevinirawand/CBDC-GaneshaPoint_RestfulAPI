@@ -7,7 +7,8 @@ import compression from 'compression';
 import helmet from 'helmet';
 import cors from 'cors';
 import apicache from 'apicache';
-import testRoutes from './domains/test/test-routes.js';
+import authRoutes from './domains/auth/auth-routes.js';
+import userRoutes from './domains/user/user-routes.js';
 
 class ExpressApplication {
    private app: Application;
@@ -75,7 +76,8 @@ class ExpressApplication {
    }
 
    private setupRoute(): void {
-      this.app.use('/api/v1/test', testRoutes);
+      this.app.use('/api/v1/auth', authRoutes);
+      this.app.use('/api/v1/user', userRoutes);
    }
 
    private configureAssets() {

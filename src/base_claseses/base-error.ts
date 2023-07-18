@@ -1,8 +1,8 @@
 class BaseError extends Error {
-   public errorCode: string;
+   public errorCode: number;
    public statusCode: string;
 
-   constructor(errorCode: string, statusCode: string, message: string) {
+   constructor(errorCode: number, statusCode: string, message: string) {
       super(message);
       this.errorCode = errorCode;
       this.statusCode = statusCode;

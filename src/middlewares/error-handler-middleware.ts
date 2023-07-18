@@ -1,7 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
 import BaseError from '../base_claseses/base-error';
-import errorCodes from '../errors/error-codes';
+import StatusCodes from '../errors/status-codes';
 import logger from '../utils/logger';
+import { INVALID_CREDENTIALS, SERVER_PROBLEM } from '../errors/error-codes';
 
 const errorHandler = (
    err: any,
@@ -9,7 +10,7 @@ const errorHandler = (
    res: Response,
    _next: NextFunction,
 ) => {
-   const statusCode: any = Object.values(errorCodes).find(
+   const statusCode: any = Object.values(StatusCodes).find(
       (code: any) => code.message === err.statusCode,
    );
 
@@ -20,9 +21,9 @@ const errorHandler = (
          errorObj[error.path] = [error.message];
       }
 
-      return res.status(errorCodes.BAD_REQUEST.code).json({
-         code: 400,
-         status: errorCodes.BAD_REQUEST.message,
+      return res.status(StatusCodes.BAD_REQUEST.code).json({
+         code: INVALID_CREDENTIALS,
+         status: StatusCodes.BAD_REQUEST.message,
          errors: errorObj,
       });
    }
@@ -42,9 +43,9 @@ const errorHandler = (
       });
    }
 
-   return res.status(errorCodes.INTERNAL_SERVER.code).json({
-      code: 500,
-      status: errorCodes.INTERNAL_SERVER.message,
+   return res.status(StatusCodes.INTERNAL_SERVER.code).json({
+      code: SERVER_PROBLEM,
+      status: StatusCodes.INTERNAL_SERVER.message,
       errors: {
          message: err.message,
       },
