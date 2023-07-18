@@ -8,7 +8,6 @@ import helmet from 'helmet';
 import cors from 'cors';
 import apicache from 'apicache';
 import testRoutes from './domains/test/test-routes.js';
-import tiktokScraperRoutes from './domains/Tiktok/Scraper/tiktok-scraper-routes.js';
 
 class ExpressApplication {
    private app: Application;
@@ -77,7 +76,6 @@ class ExpressApplication {
 
    private setupRoute(): void {
       this.app.use('/api/v1/test', testRoutes);
-      this.app.use('/api/v1/tiktok', tiktokScraperRoutes);
    }
 
    private configureAssets() {
