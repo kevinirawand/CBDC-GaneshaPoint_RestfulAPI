@@ -23,22 +23,47 @@ class AuthController {
 
       const hashPassword: string = await AuthUtils.hash(req.body.password);
 
-      await db.User.create({
-         nama: req.body.nama,
-         no_hp: req.body.no_hp,
-         phone_number: req.body.phone_number,
-         email: req.body.email,
-         password: hashPassword,
-         role: 'User',
-      });
+      try {
+         await db.sequelize.transaction(
+            async (transactionData: any): Promise<any> => {
+               const user = await db.User.create(
+                  {
+                     nama: req.body.nama,
+                     no_hp: req.body.no_hp,
+                     phone_number: req.body.phone_number,
+                     email: req.body.email,
+                     password: hashPassword,
+                  },
+                  {
+                     transaction: transactionData,
+                  },
+               );
 
-      return res.status(200).json({
-         code: 'SUCCESS_REGISTER',
-         status: 'OK',
-         data: {
-            message: 'Register Success!',
-         },
-      });
+               await db.Wallet.create(
+                  {
+                     user_id: user.id,
+                  },
+                  {
+                     transaction: transactionData,
+                  },
+               );
+            },
+         );
+
+         return res.status(200).json({
+            code: 200,
+            status: 'OK',
+            data: {
+               message: 'Register Success!',
+            },
+         });
+      } catch (error: any) {
+         throw new BaseError(
+            400,
+            statusCodes.BAD_REQUEST.message,
+            error!.message.toString(),
+         );
+      }
    };
 
    public login = async (req: Request, res: Response): Promise<Response> => {
@@ -63,7 +88,7 @@ class AuthController {
       let accessToken: string = AuthUtils.generateToken(user.id, user.username);
 
       return res.status(200).json({
-         code: 'SUCCESS_LOGIN',
+         code: 200,
          status: 'OK',
          data: {
             user_id: user.id,
