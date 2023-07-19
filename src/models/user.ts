@@ -8,7 +8,7 @@ module.exports = (sequelize: any, DataTypes: any) => {
        * The `models/index` file will call this method automatically.
        */
       static associate(models: any) {
-         // define association here
+         User.hasOne(models.Wallet);
       }
    }
    User.init(
@@ -16,17 +16,16 @@ module.exports = (sequelize: any, DataTypes: any) => {
          nama: DataTypes.STRING,
          no_hp: DataTypes.STRING,
          email: DataTypes.STRING,
-         ganesha_point: {
-            type: DataTypes.FLOAT,
-            defaultValue: 500.0,
-         },
          password: DataTypes.STRING,
-         role: DataTypes.ENUM(
-            'Central_Bank',
-            'Intermediaries',
-            'User',
-            'Merchant',
-         ),
+         role: {
+            type: DataTypes.ENUM(
+               'Central_Bank',
+               'Intermediaries',
+               'User',
+               'Merchant',
+            ),
+            defaultValue: 'User',
+         },
       },
       {
          sequelize,
