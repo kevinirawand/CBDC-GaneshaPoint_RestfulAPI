@@ -26,22 +26,21 @@ class AuthController {
       try {
          await db.sequelize.transaction(
             async (transactionData: any): Promise<any> => {
-               const user = await db.User.create(
+               const wallet = await db.Wallet.create(
+                  {},
+                  {
+                     transaction: transactionData,
+                  },
+               );
+
+               await db.User.create(
                   {
                      nama: req.body.nama,
                      no_hp: req.body.no_hp,
                      phone_number: req.body.phone_number,
                      email: req.body.email,
                      password: hashPassword,
-                  },
-                  {
-                     transaction: transactionData,
-                  },
-               );
-
-               await db.Wallet.create(
-                  {
-                     user_id: user.id,
+                     wallet_id: wallet.id,
                   },
                   {
                      transaction: transactionData,
