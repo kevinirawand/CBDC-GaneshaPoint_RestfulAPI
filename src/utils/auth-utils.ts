@@ -14,11 +14,11 @@ class AuthUtils {
       return await bcrypt.compare(passCredentials, passResource);
    };
 
-   public static generateToken = (id: number, username: string): string => {
+   public static generateToken = (id: number, role: string): string => {
       const accessToken: string = jwt.sign(
          {
             userId: id,
-            username: username,
+            role: role,
          },
          process.env.ACCESS_TOKEN_SECRET_KEY || '',
          {

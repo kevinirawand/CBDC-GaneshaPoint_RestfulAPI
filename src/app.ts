@@ -9,6 +9,7 @@ import cors from 'cors';
 import apicache from 'apicache';
 import authRoutes from './domains/auth/auth-routes.js';
 import userRoutes from './domains/user/user-routes.js';
+import TransferRoutes from './domains/transaction/transfer/transfer-routes.js';
 
 class ExpressApplication {
    private app: Application;
@@ -78,6 +79,7 @@ class ExpressApplication {
    private setupRoute(): void {
       this.app.use('/api/v1/auth', authRoutes);
       this.app.use('/api/v1/user', userRoutes);
+      this.app.use('/api/v1/transfer', TransferRoutes);
    }
 
    private configureAssets() {

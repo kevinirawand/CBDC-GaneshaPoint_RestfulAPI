@@ -85,7 +85,7 @@ class AuthController {
          );
       }
 
-      let accessToken: string = AuthUtils.generateToken(user.id, user.username);
+      let accessToken: string = AuthUtils.generateToken(user.id, user.role);
 
       return res.status(200).json({
          code: 200,
