@@ -5,7 +5,20 @@ import db from '../../models';
 
 class UserServices {
    public getAll = async (): Promise<any> => {
-      const users = await db.User.findAll();
+      const users = await db.User.findAll({
+         include: [
+            {
+               model: db.Wallet,
+               as: 'wallet',
+               attributes: {
+                  exclude: ['createdAt', 'updatedAt'],
+               },
+            },
+         ],
+         attributes: {
+            exclude: ['password', 'createdAt', 'updatedAt', 'wallet_id'],
+         },
+      });
 
       return users;
    };
@@ -20,6 +33,15 @@ class UserServices {
          where: {
             id: user_id,
          },
+         include: [
+            {
+               model: db.Wallet,
+               as: 'wallet',
+               attributes: {
+                  exclude: ['createdAt', 'updatedAt'],
+               },
+            },
+         ],
          attributes: { exclude: ['password', 'createdAt', 'updatedAt'] },
       });
 
@@ -48,7 +70,7 @@ class UserServices {
             'User Does not exist',
          );
       }
-      await db.User.update(data, {
+      await user.update(data, {
          where: {
             id: user_id,
          },
@@ -56,6 +78,20 @@ class UserServices {
    };
 
    public delete = async (user_id: number): Promise<any> => {
+      const user = await db.User.findOne({
+         where: {
+            id: user_id,
+         },
+      });
+
+      if (!user) {
+         throw new BaseError(
+            400,
+            statusCodes.BAD_REQUEST.message,
+            'User Does not exist',
+         );
+      }
+
       await db.User.destroy({
          where: {
             id: user_id,

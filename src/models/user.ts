@@ -8,7 +8,10 @@ module.exports = (sequelize: any, DataTypes: any) => {
        * The `models/index` file will call this method automatically.
        */
       static associate(models: any) {
-         User.hasOne(models.Wallet);
+         User.belongsTo(models.Wallet, {
+            as: 'wallet',
+            foreignKey: 'wallet_id',
+         });
       }
    }
    User.init(
@@ -26,6 +29,7 @@ module.exports = (sequelize: any, DataTypes: any) => {
             ),
             defaultValue: 'User',
          },
+         wallet_id: DataTypes.UUID,
       },
       {
          sequelize,

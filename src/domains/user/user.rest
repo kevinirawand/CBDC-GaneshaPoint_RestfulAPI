@@ -1,19 +1,22 @@
 ### GET ALL USER
 GET http://localhost:1337/api/v1/user
-X-Auth: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiS2V2aW4gSUQiLCJpYXQiOjE2ODQ1OTk5MTAsImV4cCI6MTY4NDY1MzkxMH0.Onh-L2vxPbxjtTOWeCrycig9UJNm4EcM5VlsJAVXvlA
+X-Auth: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJVc2VyIiwiaWF0IjoxNjg5NzUwOTY1LCJleHAiOjE2OTAzNTU3NjV9.8FniII-q5eafRRTSHNnrTssV46CkXE6_ZCdw-0BNbJA
 
 ### GET ONE USER
-GET http://localhost:1337/api/v1/user/show/1
+GET http://localhost:1337/api/v1/user/1
+X-Auth: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJVc2VyIiwiaWF0IjoxNjg5NzUwOTY1LCJleHAiOjE2OTAzNTU3NjV9.8FniII-q5eafRRTSHNnrTssV46CkXE6_ZCdw-0BNbJA
 
 ###
-PUT http://localhost:1337/api/v1/user/update/1
+PUT http://localhost:1337/api/v1/user/1
 Content-Type: application/json
+X-Auth: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJVc2VyIiwiaWF0IjoxNjg5NzUwOTY1LCJleHAiOjE2OTAzNTU3NjV9.8FniII-q5eafRRTSHNnrTssV46CkXE6_ZCdw-0BNbJA
 
 {
-   "nama": "Kevin ID",
+   "nama": "KevinID",
    "no_hp": "08214861241",
    "email": "test@gmail.com"
 }
 
 ###
-DELETE http://localhost:1337/api/v1/user/delete/3
+DELETE http://localhost:1337/api/v1/user/3
+X-Auth: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJVc2VyIiwiaWF0IjoxNjg5NzUwOTY1LCJleHAiOjE2OTAzNTU3NjV9.8FniII-q5eafRRTSHNnrTssV46CkXE6_ZCdw-0BNbJA
