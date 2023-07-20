@@ -6,15 +6,25 @@ X-Auth: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJV
 GET http://localhost:1337/api/v1/user/1
 X-Auth: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJVc2VyIiwiaWF0IjoxNjg5NzUwOTY1LCJleHAiOjE2OTAzNTU3NjV9.8FniII-q5eafRRTSHNnrTssV46CkXE6_ZCdw-0BNbJA
 
-###
+### UPDATE PROFILE
 PUT http://localhost:1337/api/v1/user/1
+Content-Type: application/json
+X-Auth: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJVc2VyIiwiaWF0IjoxNjg5ODMzODI2LCJleHAiOjE2OTA0Mzg2MjZ9.1Fg_P6ABVnRIk-F3mR1ST5Evr8vpKT9V9FBB-Tl-Z5E
+
+{
+   "nama": "Kevin ID",
+   "email": "test@gmail.com"
+}
+
+### UPDATE PASSWORD
+PUT http://localhost:1337/api/v1/user/1/update-password
 Content-Type: application/json
 X-Auth: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJVc2VyIiwiaWF0IjoxNjg5NzUwOTY1LCJleHAiOjE2OTAzNTU3NjV9.8FniII-q5eafRRTSHNnrTssV46CkXE6_ZCdw-0BNbJA
 
 {
-   "nama": "Kevin ID",
-   "no_hp": "08214861241",
-   "email": "test@gmail.com"
+   "oldPassword": "12345",
+   "newPassword": "12345678",
+   "newPasswordConfirmation": "12345678"
 }
 
 ###

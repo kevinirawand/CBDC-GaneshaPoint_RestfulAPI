@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import IController from '../../interfaces/controller-interface';
 import UserService from './user-services';
+import statusCodes from '../../errors/status-codes';
 
 class UserController implements IController {
    async index(req: Request, res: Response): Promise<Response> {
@@ -42,14 +43,43 @@ class UserController implements IController {
       });
    }
 
-   async update(req: Request, res: Response): Promise<Response> {
-      await UserService.update(parseInt(req.params.user_id || ''), req.body);
+   async updatePassword(req: Request, res: Response): Promise<Response> {
+      await UserService.updatePassword(
+         parseInt(req.params.user_id!),
+         req.body.oldPassword,
+         req.body.newPassword,
+      );
 
       return res.status(200).json({
          code: 200,
          status: 'OK',
          data: {
-            message: 'User was update!',
+            message: 'User password was update!',
+         },
+      });
+   }
+
+   async update(req: Request, res: Response): Promise<Response> {
+      const obj = JSON.parse(JSON.stringify({ ...req.files }));
+
+      let data = {
+         ...req.body,
+      };
+
+      if (obj.profile_picture) {
+         data = {
+            ...req.body,
+            profile_picture: obj.profile_picture[0].filename.toString(),
+         };
+      }
+
+      await UserService.update(parseInt(req.params.user_id!), data);
+
+      return res.status(200).json({
+         code: 200,
+         status: 'OK',
+         data: {
+            message: 'User profile was update!',
          },
       });
    }

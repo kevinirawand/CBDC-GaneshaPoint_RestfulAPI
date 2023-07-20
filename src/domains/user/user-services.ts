@@ -2,6 +2,7 @@ import { NULL_DATA } from '../../errors/error-codes';
 import BaseError from '../../base_claseses/base-error';
 import statusCodes from '../../errors/status-codes';
 import db from '../../models';
+import AuthUtils from '../../utils/auth-utils';
 
 class UserServices {
    public getAll = async (): Promise<any> => {
@@ -23,10 +24,37 @@ class UserServices {
       return users;
    };
 
-   // use register service
-   // public create = async (data: any): Promise<void> => {
-   //    await db.User.create(data);
-   // };
+   public updatePassword = async (
+      userId: number,
+      oldPassword: string,
+      newPassword: string,
+   ): Promise<void> => {
+      const user = await db.User.findOne({
+         where: {
+            id: userId,
+         },
+      });
+      console.info(user.password);
+
+      const match: boolean = await AuthUtils.passwordCompare(
+         oldPassword,
+         user.password,
+      );
+
+      if (!match) {
+         throw new BaseError(
+            400,
+            statusCodes.BAD_REQUEST.message,
+            'Incorect old password',
+         );
+      }
+
+      const hashPassword: string = await AuthUtils.hash(newPassword);
+
+      await user.update({
+         password: hashPassword,
+      });
+   };
 
    public findById = async (user_id: number): Promise<any> => {
       const user = await db.User.findOne({
