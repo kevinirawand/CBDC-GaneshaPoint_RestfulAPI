@@ -1,0 +1,9 @@
+### SEND
+POST http://localhost:1337/api/v1/transfer
+Content-Type: application/json
+X-Auth: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY4OTc0OTYyMCwiZXhwIjoxNjkwMzU0NDIwfQ.gt9MW-AviwlDupV7BxxNDD9JbkyqweYVMAsMPS-hfTg
+
+{
+   "phone_number": "6285159436455",
+   "amount": 123.5
+}
