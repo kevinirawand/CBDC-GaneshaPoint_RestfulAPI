@@ -15,10 +15,17 @@ class AuthUtils {
    };
 
    public static generateToken = (id: number, role: string): string => {
+      let options = {
+         maxAge: 20 * 60 * 1000, // would expire in 20minutes
+         httpOnly: true, // The cookie is only accessible by the web server
+         secure: true,
+         sameSite: 'None',
+      };
       const accessToken: string = jwt.sign(
          {
             userId: id,
             role: role,
+            isValid: true,
          },
          process.env.ACCESS_TOKEN_SECRET_KEY || '',
          {
