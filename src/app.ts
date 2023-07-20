@@ -10,49 +10,47 @@ import apicache from 'apicache';
 import authRoutes from './domains/auth/auth-routes.js';
 import userRoutes from './domains/user/user-routes.js';
 import TransferRoutes from './domains/transaction/transfer/transfer-routes.js';
+import redeemRoutes from './domains/transaction/redeem/redeem-routes.js';
+import multer from 'multer';
 
 class ExpressApplication {
    private app: Application;
-   // private fileStorage: any = multer.diskStorage({
-   //    destination: (req, file, cb) => {
-   //       cb(null, 'public/images');
-   //    },
-   //    filename: (req, file, cb) => {
-   //       cb(null, new Date().getTime() + '-' + file.originalname);
-   //    },
-   // });
-   // private fileFilter: any = (req: any, file: any, cb: any) => {
-   //    if (
-   //       file.mimetype === 'image/png' ||
-   //       file.mimetype === 'image/jpg' ||
-   //       file.mimetype === 'image/jpeg'
-   //    ) {
-   //       cb(null, true);
-   //    } else {
-   //       cb(null, false);
-   //    }
-   // };
+   private fileStorage: any = multer.diskStorage({
+      destination: (req, file, cb) => {
+         cb(null, 'public/images');
+      },
+      filename: (req, file, cb) => {
+         cb(null, new Date().getTime() + '-' + file.originalname);
+      },
+   });
+   private fileFilter: any = (req: any, file: any, cb: any) => {
+      if (
+         file.mimetype === 'image/png' ||
+         file.mimetype === 'image/jpg' ||
+         file.mimetype === 'image/jpeg'
+      ) {
+         cb(null, true);
+      } else {
+         cb(null, false);
+      }
+   };
 
    constructor(private port: string | number) {
       this.app = express();
       this.port = port;
       this.app.use(express.json({ type: 'application/json' }));
       this.app.use(express.urlencoded({ extended: false }));
-      // this.app.use(
-      //    multer({
-      //       storage: this.fileStorage,
-      //       fileFilter: this.fileFilter,
-      //    }).fields([
-      //       {
-      //          name: 'images',
-      //          maxCount: 1,
-      //       },
-      //       {
-      //          name: 'evidence_pict',
-      //          maxCount: 1,
-      //       },
-      //    ]),
-      // );
+      this.app.use(
+         multer({
+            storage: this.fileStorage,
+            fileFilter: this.fileFilter,
+         }).fields([
+            {
+               name: 'profile_picture',
+               maxCount: 1,
+            },
+         ]),
+      );
       //  __init__
       this.configureAssets();
       this.setupRoute();
@@ -80,6 +78,7 @@ class ExpressApplication {
       this.app.use('/api/v1/auth', authRoutes);
       this.app.use('/api/v1/user', userRoutes);
       this.app.use('/api/v1/transfer', TransferRoutes);
+      this.app.use('/api/v1/redeem', redeemRoutes);
    }
 
    private configureAssets() {
