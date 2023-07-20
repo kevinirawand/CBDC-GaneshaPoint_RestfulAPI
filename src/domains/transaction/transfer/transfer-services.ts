@@ -1,7 +1,6 @@
 import BaseError from '../../../base_claseses/base-error';
 import statusCodes from '../../../errors/status-codes';
 import db from '../../../models';
-import userServices from '../../user/user-services';
 
 class TransferServices {
    public send = async (
@@ -74,7 +73,7 @@ class TransferServices {
                await userSender.update(
                   {
                      ganesha_point:
-                        userReceiver.dataValues.ganesha_point - amount,
+                        userSender.dataValues.ganesha_point - amount,
                   },
                   {
                      transaction: transactionData,

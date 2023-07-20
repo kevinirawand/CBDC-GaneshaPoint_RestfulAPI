@@ -4,6 +4,8 @@ import userServices from '../../user/user-services';
 
 class TransferController {
    public transfer = async (req: Request, res: Response): Promise<Response> => {
+      console.info(req.app.locals.user);
+
       await transferServices.send(
          req.app.locals.user.userId,
          req.body.phone_number,

@@ -1,9 +1,9 @@
 ### SEND
 POST http://localhost:1337/api/v1/transfer
 Content-Type: application/json
-X-Auth: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY4OTc0OTYyMCwiZXhwIjoxNjkwMzU0NDIwfQ.gt9MW-AviwlDupV7BxxNDD9JbkyqweYVMAsMPS-hfTg
+X-Auth: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJVc2VyIiwiaXNWYWxpZCI6dHJ1ZSwiaWF0IjoxNjg5ODQxOTczLCJleHAiOjE2OTA0NDY3NzN9._2JXP7Flpni9QYKOpWNYtjjtq6zMS-dvZjiR7eooAHk
 
 {
-   "phone_number": "6285159436455",
-   "amount": 100
+   "phone_number": "08214861241",
+   "amount": 123.5
 }
