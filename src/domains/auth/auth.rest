@@ -15,6 +15,16 @@ POST http://localhost:1337/api/v1/auth/login
 Content-Type: application/json
 
 {
-   "email": "ojoko@gmail.com",
+   "email": "test@gmail.com",
+   "password": "12345"
+}
+
+### LOGOUT
+POST http://localhost:1337/api/v1/auth/logout
+Content-Type: application/json
+X-Auth: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJVc2VyIiwiaXNWYWxpZCI6dHJ1ZSwiaWF0IjoxNjg5ODQxOTczLCJleHAiOjE2OTA0NDY3NzN9._2JXP7Flpni9QYKOpWNYtjjtq6zMS-dvZjiR7eooAHk
+
+{
+   "email": "test@gmail.com",
    "password": "12345"
 }

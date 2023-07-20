@@ -15,27 +15,37 @@ const authToken = (req: Request, res: Response, next: NextFunction): any => {
          'User Have Not Login',
       );
 
-   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET_KEY || '', (err, user) => {
-      if (err) {
-         if (err.message == 'invalid signature') {
-            throw new BaseError(
-               403,
-               statusCodes.FORBIDDEN.message,
-               'Invalid Signature',
-            );
-         } else {
-            throw new BaseError(
-               403,
-               statusCodes.FORBIDDEN.message,
-               'Token Is Invalid Or No Longer Valid',
-            );
+   jwt.verify(
+      token,
+      process.env.ACCESS_TOKEN_SECRET_KEY || '',
+      (err, user: any) => {
+         if (err) {
+            if (err.message == 'invalid signature') {
+               throw new BaseError(
+                  403,
+                  statusCodes.FORBIDDEN.message,
+                  'Invalid Signature',
+               );
+            } else if (user.isValid === false) {
+               throw new BaseError(
+                  403,
+                  statusCodes.FORBIDDEN.message,
+                  'Token Is Invalid Or No Longer Valid',
+               );
+            } else {
+               throw new BaseError(
+                  403,
+                  statusCodes.FORBIDDEN.message,
+                  'Token Is Invalid Or No Longer Valid',
+               );
+            }
          }
-      }
 
-      req.app.locals.user = user;
+         req.app.locals.user = user;
 
-      return next();
-   });
+         return next();
+      },
+   );
 };
 
 export default authToken;

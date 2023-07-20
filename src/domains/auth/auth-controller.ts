@@ -86,6 +86,8 @@ class AuthController {
 
       let accessToken: string = AuthUtils.generateToken(user.id, user.role);
 
+      // res.cookie('jwt', accessToken, {httpOnly: true, maxAge: })
+
       return res.status(200).json({
          code: 200,
          status: 'OK',
@@ -93,6 +95,23 @@ class AuthController {
             user_id: user.id,
             accessToken: accessToken,
             refreshToken: 'THIS_REFRESH_TOKEN',
+         },
+      });
+   };
+
+   public logout = async (req: Request, res: Response): Promise<Response> => {
+      let user = req.app.locals.user;
+
+      // console.info(user);
+
+      user.isValid = false;
+      console.info(user);
+
+      return res.status(200).json({
+         code: 200,
+         status: 'OK',
+         data: {
+            user,
          },
       });
    };
