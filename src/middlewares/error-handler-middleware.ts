@@ -22,7 +22,7 @@ const errorHandler = (
       }
 
       return res.status(StatusCodes.BAD_REQUEST.code).json({
-         code: INVALID_CREDENTIALS,
+         code: 400,
          status: StatusCodes.BAD_REQUEST.message,
          errors: errorObj,
       });
@@ -44,7 +44,7 @@ const errorHandler = (
    }
 
    return res.status(StatusCodes.INTERNAL_SERVER.code).json({
-      code: SERVER_PROBLEM,
+      code: 500,
       status: StatusCodes.INTERNAL_SERVER.message,
       errors: {
          message: err.message,
