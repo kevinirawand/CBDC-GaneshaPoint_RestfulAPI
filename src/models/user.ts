@@ -30,6 +30,10 @@ module.exports = (sequelize: any, DataTypes: any) => {
             defaultValue: 'User',
          },
          wallet_id: DataTypes.UUID,
+         profile_picture: {
+            type: DataTypes.STRING,
+            defaultValue: 'default.png',
+         },
       },
       {
          sequelize,
