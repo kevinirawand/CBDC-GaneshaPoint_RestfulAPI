@@ -42,7 +42,7 @@ class UserServices {
                },
             },
          ],
-         attributes: { exclude: ['password', 'createdAt', 'updatedAt'] },
+         attributes: { exclude: ['password', 'wallet_id', 'updatedAt'] },
       });
 
       if (user === null) {
@@ -70,11 +70,7 @@ class UserServices {
             'User Does not exist',
          );
       }
-      await user.update(data, {
-         where: {
-            id: user_id,
-         },
-      });
+      await user.update(data);
    };
 
    public delete = async (user_id: number): Promise<any> => {

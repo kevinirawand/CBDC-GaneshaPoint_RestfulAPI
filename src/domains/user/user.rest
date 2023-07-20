@@ -12,7 +12,7 @@ Content-Type: application/json
 X-Auth: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJVc2VyIiwiaWF0IjoxNjg5NzUwOTY1LCJleHAiOjE2OTAzNTU3NjV9.8FniII-q5eafRRTSHNnrTssV46CkXE6_ZCdw-0BNbJA
 
 {
-   "nama": "KevinID",
+   "nama": "Kevin ID",
    "no_hp": "08214861241",
    "email": "test@gmail.com"
 }
