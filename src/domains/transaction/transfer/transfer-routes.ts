@@ -6,6 +6,10 @@ import authToken from '../../../middlewares/auth-token-middleware';
 class TransferRoutes extends BaseRoutes {
    public routes(): void {
       this.router.post('/', [authToken, tryCatch(TransferController.transfer)]);
+      this.router.get('/notification', [
+         authToken,
+         tryCatch(TransferController.notification),
+      ]);
    }
 }
 

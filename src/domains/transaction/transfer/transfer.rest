@@ -7,3 +7,8 @@ X-Auth: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJV
    "phone_number": "6285159436455",
    "amount": 123.5
 }
+
+### NOTIFICATION
+GET http://localhost:1337/api/v1/transfer/notification
+Content-Type: application/json
+X-Auth: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJVc2VyIiwiaXNWYWxpZCI6dHJ1ZSwiaWF0IjoxNjkwMTczNTYzLCJleHAiOjE2OTA3NzgzNjN9.nxR3rjdj6vhey0Cz6Py7AoEnrssnKbRYHNuI6OCg5Ys

@@ -20,6 +20,21 @@ class TransferController {
          },
       });
    };
+
+   public notification = async (
+      req: Request,
+      res: Response,
+   ): Promise<Response> => {
+      const userNotification = await transferServices.getNotificationList(
+         req.app.locals.user.userId,
+      );
+
+      return res.status(200).json({
+         code: 200,
+         status: 'OK',
+         data: userNotification,
+      });
+   };
 }
 
 export default new TransferController();

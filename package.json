@@ -20,6 +20,7 @@
    "author": "",
    "license": "MIT",
    "dependencies": {
+      "@sequelize/core": "^7.0.0-alpha.27",
       "@types/sequelize": "^4.28.15",
       "apicache": "^1.6.3",
       "axios": "^1.4.0",

@@ -1,6 +1,7 @@
 import BaseError from '../../../base_claseses/base-error';
 import statusCodes from '../../../errors/status-codes';
 import db from '../../../models';
+import { Op } from '@sequelize/core';
 
 class TransferServices {
    public send = async (
@@ -116,12 +117,19 @@ class TransferServices {
       }
    };
 
-   public saveTransaction = async (
-      sender_phone: number,
-      receiver_phone: number,
-      amount: number,
-      transaction: any,
-   ): Promise<void> => {};
+   public getNotificationList = async (userId: number): Promise<any> => {
+      const user = await db.User.findOne({
+         where: {
+            id: userId,
+         },
+      });
+
+      const notifList: any = await db.Transaction.findAll({
+         where: [{ phone_number_sender: user.no_hp }, { status: 'success' }],
+      });
+
+      return notifList;
+   };
 }
 
 export default new TransferServices();
