@@ -3,9 +3,9 @@ POST http://localhost:1337/api/v1/auth/register
 Content-Type: application/json
 
 {
-   "nama": "Joko Degleng",
-   "no_hp": "6285159436455",
-   "email": "ojoko@gmail.com",
+   "nama": "KevinID",
+   "no_hp": "6285159436456",
+   "email": "kevin@gmail.com",
    "password": "12345",
    "passwordConfirmation": "12345"
 }
@@ -15,7 +15,7 @@ POST http://localhost:1337/api/v1/auth/login
 Content-Type: application/json
 
 {
-   "email": "test@gmail.com",
+   "email": "ojoko@gmail.com",
    "password": "12345"
 }
 
