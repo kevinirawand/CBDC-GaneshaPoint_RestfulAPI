@@ -111,7 +111,7 @@ class AuthController {
          code: 200,
          status: 'OK',
          data: {
-            user,
+            message: 'User logged out',
          },
       });
    };
