@@ -90,7 +90,7 @@ class UserController implements IController {
          code: 200,
          status: 'OK',
          data: {
-            message: 'User was delete!',
+            message: 'User was deleted!',
          },
       });
    }
