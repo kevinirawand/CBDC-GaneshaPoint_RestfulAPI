@@ -51,6 +51,7 @@ class ExpressApplication {
             },
          ]),
       );
+      this.app.use(cors());
       //  __init__
       this.configureAssets();
       this.setupRoute();
@@ -64,7 +65,7 @@ class ExpressApplication {
          process.env.NODE_ENV === 'development' ? morgan('dev') : '',
          compression(),
          helmet(),
-         cors(),
+         // cors(),
       ]);
    }
 
