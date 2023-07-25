@@ -9,6 +9,6 @@ X-Auth: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJV
 }
 
 ### NOTIFICATION
-GET http://localhost:1337/api/v1/transfer/notification
+GET http://localhost:1337/api/v1/transfer/history
 Content-Type: application/json
-X-Auth: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJVc2VyIiwiaXNWYWxpZCI6dHJ1ZSwiaWF0IjoxNjkwMTczNTYzLCJleHAiOjE2OTA3NzgzNjN9.nxR3rjdj6vhey0Cz6Py7AoEnrssnKbRYHNuI6OCg5Ys
+X-Auth: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJVc2VyIiwiaXNWYWxpZCI6dHJ1ZSwiaWF0IjoxNjkwMzA2OTE5LCJleHAiOjE2OTA5MTE3MTl9.XUhXSAVmPQ1IpUotEsZyLr_7kgcl4q-P6Y0gG-BjQ14

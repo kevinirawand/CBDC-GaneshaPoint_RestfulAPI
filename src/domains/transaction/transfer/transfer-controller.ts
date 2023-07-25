@@ -21,10 +21,7 @@ class TransferController {
       });
    };
 
-   public notification = async (
-      req: Request,
-      res: Response,
-   ): Promise<Response> => {
+   public history = async (req: Request, res: Response): Promise<Response> => {
       const userNotification = await transferServices.getNotificationList(
          req.app.locals.user.userId,
       );

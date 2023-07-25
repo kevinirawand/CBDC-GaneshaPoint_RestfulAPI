@@ -53,10 +53,20 @@ class TransferServices {
       if (!userReceiver) {
          throw new BaseError(
             400,
-            statusCodes.DUPLICATE.message,
+            statusCodes.BAD_REQUEST.message,
             'User Receiver Does not exist',
          );
       }
+
+      if (!userSender) {
+         throw new BaseError(
+            400,
+            statusCodes.BAD_REQUEST.message,
+            'User Sender Does not exist',
+         );
+      }
+
+      console.info(userReceiver);
 
       if (userSender.ganesha_point - amount < 0) {
          throw new BaseError(
@@ -81,7 +91,8 @@ class TransferServices {
 
                await userSender.update(
                   {
-                     ganesha_point: userSender.dataValues.ganesha_poin - amount,
+                     ganesha_point:
+                        userSender.dataValues.ganesha_point - amount,
                   },
                   {
                      transaction: transactionData,
@@ -123,6 +134,14 @@ class TransferServices {
             id: userId,
          },
       });
+
+      if (!user) {
+         throw new BaseError(
+            400,
+            statusCodes.BAD_REQUEST.message,
+            'User Does not exist',
+         );
+      }
 
       const notifList: any = await db.Transaction.findAll({
          where: [{ phone_number_sender: user.no_hp }, { status: 'success' }],
