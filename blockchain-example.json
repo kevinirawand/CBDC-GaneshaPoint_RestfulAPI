@@ -1,0 +1,130 @@
+{
+	"info": {
+		"_postman_id": "f14d3ca7-6c84-4a41-bec4-2dd8df38555c",
+		"name": "Sample",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5915535",
+		"_collection_link": "https://lunar-trinity-670607.postman.co/workspace/New-Team-Workspace~4085482d-78cf-4b69-a54d-3e737572c845/collection/5915535-f14d3ca7-6c84-4a41-bec4-2dd8df38555c?action=share&creator=5915535&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "Auth Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"samsat@gmail.com\",\r\n    \"password\": \"demo1234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{hosts}}/auth/login",
+					"host": [
+						"{{hosts}}"
+					],
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Resident Identity By NIK",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "access-token",
+						"value": "{{admin_token}}",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{hosts}}/resident-identity/find?nik=3525010501930001",
+					"host": [
+						"{{hosts}}"
+					],
+					"path": [
+						"resident-identity",
+						"find"
+					],
+					"query": [
+						{
+							"key": "nik",
+							"value": "3525010501930001"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.request.headers.add({key: 'x-api-key', value: '02e2310edc5eaf62dfe406abaf1a65af' });"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "hosts",
+			"value": "https://blockchain-itb.com/",
+			"type": "default"
+		},
+		{
+			"key": "wsl_hosts",
+			"value": "http://172.21.44.129:3000",
+			"type": "default"
+		},
+		{
+			"key": "api_key",
+			"value": "d249e530-a13e-4f25-a240-53a9ad5b1e65",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiaWF0IjoxNjg3Nzk3OTQ1LCJleHAiOjE2OTI5ODE5NDV9.6mPkc5GmUZlP_dmtdHG1Xn32cjVFEbMZK3SbA3lAq6w",
+			"type": "string"
+		},
+		{
+			"key": "admin_token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNjgzNzE0MDgzLCJleHAiOjE2ODM4MDA0ODN9.UbAeg7cylivjsSUhmvfY0jmYlFrvO7EvqNzQ6LDnLd8",
+			"type": "string"
+		},
+		{
+			"key": "instansi_token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiaWF0IjoxNjg0NDE5MTA2LCJleHAiOjE2ODQ1MDU1MDZ9.YCDQHXI8j-3IDfelfQ_6SqKaeuTStLMXZ_v46ZIBX_s",
+			"type": "string"
+		},
+		{
+			"key": "nik",
+			"value": "088888888888888",
+			"type": "string"
+		},
+		{
+			"key": "x-api-key",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
